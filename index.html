@@ -4,9 +4,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
     <title>IMC</title>
 </head>
 <body>
-    <h1>IMC - Calcul</h1>
+    <section class="container">
+        <h1>Calcul de votre IMC</h1> 
+        <div class="form">
+            
+           <div class="formTP">
+            <label for="taille">Taille (en cm)</label> <br>
+            <input type="text" name="taille" id="taille" class="formul" placeholder="Exemple : 175"><br>
+           </div>
+
+            <div class="formTP">
+                <label for="poids">Poids (en kg)</label> <br>
+            <input type="text" name="poids" id="poids" class="formul" placeholder="Exemple : 75">
+            </div>
+        </div>
+        <button type="submit" class="btn">Calculer</button>
+
+        <div class="resultPlace">
+
+            
+        </div>
+        <div class="table">
+            <h2>Interpretation de l'indice  <br>de masse corporelle (IMC)</h2> 
+            <table>
+                <tr>
+                    <th>Inferieur à 16</th> 
+                    <td> Anorexie ou dénutrition</td>
+                </tr>
+                <tr>
+                    <th>Entre 16,5 et 18,5</th> 
+                    <td>Maigreur</td>
+                </tr>
+                <tr>
+                    <th>Entre 18,5 et 25</th> 
+                    <td>Corpulense normale</td>
+                </tr>
+                <tr>
+                    <th>Entre 25 et 30</th> 
+                    <td>Surpoids</td>
+                </tr>
+                <tr>
+                    <th>Entre 30 et 35</th> 
+                    <td>Obésitée modérée</td>
+                </tr>
+                <tr>
+                    <th>Entre 35 et 40</th> 
+                    <td>Obésitée élevé</td>
+                </tr>
+                <tr>
+                    <th>Supérieur à 40</th> 
+                    <td> Obésité morbide ou massive</td>
+                </tr>
+            </table>
+        </div>
+    </section>
 </body>
 </html>
