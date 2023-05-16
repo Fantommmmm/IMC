@@ -11,7 +11,7 @@
 <body>
     <section class="container">
         <h1>Calcul de votre IMC</h1> 
-        <div class="form">
+        <form class="form" name="formImc">
             
            <div class="formTP">
             <label for="taille">Taille (en cm)</label> <br>
@@ -22,13 +22,10 @@
                 <label for="poids">Poids (en kg)</label> <br>
             <input type="text" name="poids" id="poids" class="formul" placeholder="Exemple : 75">
             </div>
-        </div>
-        <button type="submit" class="btn">Calculer</button>
+            <button type="submit" class="btn" name="btn">Calculer</button>
+        </form>
+        
 
-        <div class="resultPlace">
-
-            
-        </div>
         <div class="table">
             <h2>Interpretation de l'indice  <br>de masse corporelle (IMC)</h2> 
             <table>

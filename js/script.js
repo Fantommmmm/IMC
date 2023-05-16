@@ -1,31 +1,39 @@
+const formImc = document.forms.formImc;
 
-function calculerIMC() {
+function handleFormImc(event) {
+  event.preventDefault(); // Empêche l'envoi du formulaire
 
-    // resupere les tailles/poids
-    let taille = parseFloat(document.querySelector("#taille").value);
-    let poids = parseFloat(document.querySelector("#poids").value);
-  
-    // si ne mets rien ou du texte --> aifficher
-    if (!(taille) || !(poids)) {
-      alert("Veuillez entrer des valeurs numériques valides pour la taille et le poids.");
-      return;
-    }
-  
-    //  calcul
-    let tailleEnMetres = taille / 100; 
-    let imc = poids / (tailleEnMetres * tailleEnMetres);
-  
-    // affiche dans le html
-    let resultat = document.createElement("p");
-    resultat.innerHTML = "Votre IMC est : " + imc.toFixed(2);
-  
-    //mets le reslutat dans la div créé dans l'html
-    let resultPlace = document.querySelector(".resultPlace");
-    resultPlace.innerHTML = "";
-    resultPlace.appendChild(resultat);
+  let taille = parseFloat(formImc.taille.value);
+  let poids = parseFloat(formImc.poids.value);
+
+  if (isValidForm(poids, taille)) {
+    const imc = calculateImc(taille, poids);
+    afficherResultatIMC(formImc, imc);
+  } else {
+    afficherErreur(formImc, "Veuillez entrer des valeurs valides pour la taille et le poids.");
   }
-  
-//   lie le button a la fonction qui fait le calcul
-  let boutonCalculer = document.querySelector(".btn");
-  boutonCalculer.addEventListener("click", calculerIMC);
-  
+}
+
+formImc.addEventListener("submit", handleFormImc);
+
+function calculateImc(taille, poids) {
+  return poids / ((taille / 100) * (taille / 100));
+}
+
+function afficherErreur(elem, message) {
+  const message1 = document.createElement("div");
+  message1.innerHTML = `<p>${message}</p>`;
+  message1.classList.add("errorPlace");
+  elem.append(message1);
+}
+
+function isValidForm(poids, taille) {
+  return !(!(taille) || !(poids));
+}
+
+function afficherResultatIMC(elem, imc) {
+  const message = document.createElement("div");
+  message.innerHTML = `<p>Votre IMC est : ${imc.toFixed(2)}</p>`;
+  message.classList.add("resultPlace");
+  elem.append(message);
+}
