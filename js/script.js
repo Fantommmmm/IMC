@@ -3,10 +3,12 @@ const formImc = document.forms.formImc;
 function handleFormImc(event) {
   event.preventDefault(); // Empêche l'envoi du formulaire
 
+
   let taille = parseFloat(formImc.taille.value);
   let poids = parseFloat(formImc.poids.value);
 
   if (isValidForm(poids, taille)) {
+
     const imc = calculateImc(taille, poids);
     afficherResultatIMC(formImc, imc);
   } else {
@@ -20,18 +22,37 @@ function calculateImc(taille, poids) {
   return poids / ((taille / 100) * (taille / 100));
 }
 
+// function afficherErreur(elem, message) {
+//   const message1 = document.createElement("div");
+//   message1.innerHTML = `<p>${message}</p>`;
+//   message1.classList.add("errorPlace");
+//   elem.append(message1);
+// }
+
 function afficherErreur(elem, message) {
-  const message1 = document.createElement("div");
-  message1.innerHTML = `<p>${message}</p>`;
-  message1.classList.add("errorPlace");
-  elem.append(message1);
+  const ancienMessage = elem.querySelector(".errorPlace");
+  if (ancienMessage) {
+    elem.removeChild(ancienMessage);
+  }
+
+  const nouveauMessage = document.createElement("div");
+  nouveauMessage.innerHTML = `<p>${message}</p>`;
+  nouveauMessage.classList.add("errorPlace");
+  elem.append(nouveauMessage);
 }
+
 
 function isValidForm(poids, taille) {
   return !(!(taille) || !(poids));
 }
 
+
 function afficherResultatIMC(elem, imc) {
+  const ancienMessage = elem.querySelector(".resultPlace");
+  if (ancienMessage) {
+    elem.removeChild(ancienMessage);
+  }
+
   const message = document.createElement("div");
   message.innerHTML = `<p>Votre IMC est : ${imc.toFixed(2)}</p>`;
   message.classList.add("resultPlace");
